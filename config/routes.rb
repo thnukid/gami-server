@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :badges
+
   resources :events
 
   resources :aliases
