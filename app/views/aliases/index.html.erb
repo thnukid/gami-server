@@ -1,0 +1,29 @@
+<h1>Listing aliases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @aliases.each do |alias| %>
+      <tr>
+        <td><%= alias.username %></td>
+        <td><%= alias.email %></td>
+        <td><%= alias.user %></td>
+        <td><%= link_to 'Show', alias %></td>
+        <td><%= link_to 'Edit', edit_alias_path(alias) %></td>
+        <td><%= link_to 'Destroy', alias, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Alias', new_alias_path %>
