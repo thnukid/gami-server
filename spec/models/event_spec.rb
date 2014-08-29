@@ -31,4 +31,8 @@ RSpec.describe Event, :type => :model do
     end
   end
 
+
+  describe 'Routing' do
+   it { should route(:post, 'api/events').to('events#create') }
+  end
 end
