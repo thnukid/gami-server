@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
- scope '/api' do
-   match 'event', to: 'events#create', via: [:post]
+  namespace :api do
+   post 'events', to: 'events#create'
  end
 
 end
