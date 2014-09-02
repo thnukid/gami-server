@@ -48,6 +48,7 @@ namespace :rails_config do
     desc "Copy the important config files to the current release"
       task :symlink, roles: :app do
             run "cp #{shared_path}/database.yml #{release_path}/config/database.yml"
+            run "cp #{shared_path}/secrets.yml #{release_path}/config/secrets.yml"
         end
         after "deploy:finalize_update", "rails_config:symlink"
         after 'deploy:update_code', 'deploy:migrate'
