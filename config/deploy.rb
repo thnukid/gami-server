@@ -9,8 +9,8 @@ set :domain, 'root@178.79.154.34'
 #set :rvm_type, :user
 
 # file paths
-set :repository,  "git@github.com:thnukid/hello-ruby.git"
-set :deploy_to, "/var/www/hello-ruby.com" 
+set :repository,  "git@github.com:thnukid/gami-server.git"
+set :deploy_to, "/var/www/gami.kabisa.nl" 
 
 # distribute your applications across servers (the instructions below put them
 # all on the same server, defined above as 'domain', adjust as necessary)
