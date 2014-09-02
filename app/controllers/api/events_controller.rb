@@ -6,6 +6,10 @@ module Api
       render json: @event.to_json
     end
 
+    def index
+      render html: "Oki Doki Cowboy".html_safe
+    end
+
     def event_params
       params.require(:event).permit(:name, :data, :email)
     end
