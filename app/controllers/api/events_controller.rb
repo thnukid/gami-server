@@ -7,7 +7,8 @@ module Api
     end
 
     def index
-      render html: "Oki Doki Cowboy".html_safe
+      @event = Event.all
+      render json: @event.to_json
     end
 
     def event_params
