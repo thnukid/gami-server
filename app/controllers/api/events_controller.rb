@@ -3,7 +3,7 @@ module Api
      skip_before_filter :verify_authenticity_token
     def create
       @event = Event.create_event_from_data(event_params)
-      return render :json => { :errors => 'could not found user' }, :status => 422 if @event.nil?
+      return render :json => { :errors => 'user alias not found' }, :status => 422 if @event.nil?
       render json: @event.to_json
     end
 
