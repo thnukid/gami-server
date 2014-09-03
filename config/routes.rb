@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
-  get '/', to: redirect('/api')
+  get '/', to: redirect('/debug')
 
   namespace :api do
-    get '/', to: 'events#index'
     post 'events', to: 'events#create'
  end
+
+  namespace :debug do
+    get '/', to: 'debug#events'
+    get '/u', to: 'debug#users'
+  end
 
 end

@@ -7,11 +7,6 @@ module Api
       render json: @event.to_json
     end
 
-    def index
-      @event = Event.all
-      render json: @event.to_json
-    end
-
     def event_params
       params.require(:event).permit(:name, :data, :email)
     end
