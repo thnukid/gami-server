@@ -7,6 +7,11 @@ module Debug
         render json: @event.to_json
     end
 
+    def alias
+      @alias = Alias.all
+      render json: @alias.to_json
+    end
+
     def users
       @user = User.all
       render json: @user.to_json

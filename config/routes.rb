@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :debug do
     get '/', to: 'debug#events'
+    get '/a', to: 'debug#alias'
     get '/u', to: 'debug#users'
   end
 
