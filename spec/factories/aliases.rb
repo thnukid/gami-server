@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :alias do
     username "MyString"
-    email "MyString"
-    user nil
+    email "glockenbeat@kabisa.nl"
+    user
   end
 end

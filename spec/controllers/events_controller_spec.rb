@@ -4,21 +4,29 @@ RSpec.describe Api::EventsController, :type => :controller do
 
 
     let(:email) { 'glockenbeat@kabisa.nl' }
-    let(:user) { attributes_for(:user) }
-    #let!(:event) { create :event, user: user, email: email }
-    let(:invalidData){{email: 'email@email.com', action: '', data: 'git'}}
+    let(:invalidData){{email: email, action: '', data: 'git'}}
+    let(:validData){{email: email, action: 'git:push', data: 'data' }}
     #binding.pry
 
  describe "Post create" do
-   #context "with valid attributes" do
-    #expect {
-      #post :create, event: :event
-    #}.to change(Event.count).by(1)
-   #end
-    context "with invalid attributes" do
-      it{expect {
-        post :create, event: :invalidData
-      }.to respond_with 422}
+
+   context "with valid attributes" do
+      before do
+         create :alias
+      end
+
+      it "should return 200 response" do
+        post :create,event: validData
+        expect(response.status).to eq(200)
+      end
+   end
+
+   context "with invalid attributes" do
+      it "should return 422 error response" do
+         post :create, event: invalidData
+         expect(response.status).to eq(422)
+      end
+
     end
    end
  end
