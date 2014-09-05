@@ -4,17 +4,17 @@ module Debug
 
     def events
         @event = Event.all
-        render json: @event.to_json
+        render json: @event.reverse_order.to_json
     end
 
     def alias
       @alias = Alias.all
-      render json: @alias.to_json
+      render json: @alias.reverse_order.to_json
     end
 
     def users
       @user = User.all
-      render json: @user.to_json
+      render json: @user.reverse_order.to_json
     end
   end
 end
