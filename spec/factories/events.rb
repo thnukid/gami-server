@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :event do
-    name "MyString"
-    data "MyString"
-    user_id user
+    name "git:commit"
+    data "{data: 1}"
+    user
   end
 
   factory :invalid_event, parent: :event do
