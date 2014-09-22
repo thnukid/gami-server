@@ -1,0 +1,143 @@
+{
+  "ref": "refs/heads/master",
+  "after": "27243a01bea4ba28fc81eb5aa8c066553c7cc034",
+  "before": "1866b8473c7bf2b6c7666dd753eea81e60f94eaa",
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "compare": "https://github.com/thnukid/gami-server/compare/1866b8473c7b...27243a01bea4",
+  "commits": [
+    {
+      "id": "27243a01bea4ba28fc81eb5aa8c066553c7cc034",
+      "distinct": true,
+      "message": "test event controller",
+      "timestamp": "2014-09-05T16:55:59+02:00",
+      "url": "https://github.com/thnukid/gami-server/commit/27243a01bea4ba28fc81eb5aa8c066553c7cc034",
+      "author": {
+        "name": "Eric Claus Bartholemy",
+        "email": "thnukid@users.noreply.github.com",
+        "username": "thnukid"
+      },
+      "committer": {
+        "name": "Eric Claus Bartholemy",
+        "email": "thnukid@users.noreply.github.com",
+        "username": "thnukid"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "spec/controllers/events_controller_spec.rb",
+        "spec/factories/aliases.rb"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "27243a01bea4ba28fc81eb5aa8c066553c7cc034",
+    "distinct": true,
+    "message": "test event controller",
+    "timestamp": "2014-09-05T16:55:59+02:00",
+    "url": "https://github.com/thnukid/gami-server/commit/27243a01bea4ba28fc81eb5aa8c066553c7cc034",
+    "author": {
+      "name": "Eric Claus Bartholemy",
+      "email": "thnukid@users.noreply.github.com",
+      "username": "thnukid"
+    },
+    "committer": {
+      "name": "Eric Claus Bartholemy",
+      "email": "thnukid@users.noreply.github.com",
+      "username": "thnukid"
+    },
+    "added": [
+
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+      "spec/controllers/events_controller_spec.rb",
+      "spec/factories/aliases.rb"
+    ]
+  },
+  "repository": {
+    "id": 23457729,
+    "name": "gami-server",
+    "full_name": "thnukid/gami-server",
+    "owner": {
+      "name": "thnukid",
+      "email": "thnukid@users.noreply.github.com"
+    },
+    "private": false,
+    "html_url": "https://github.com/thnukid/gami-server",
+    "description": "Server to receive gamification events",
+    "fork": false,
+    "url": "https://github.com/thnukid/gami-server",
+    "forks_url": "https://api.github.com/repos/thnukid/gami-server/forks",
+    "keys_url": "https://api.github.com/repos/thnukid/gami-server/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/thnukid/gami-server/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/thnukid/gami-server/teams",
+    "hooks_url": "https://api.github.com/repos/thnukid/gami-server/hooks",
+    "issue_events_url": "https://api.github.com/repos/thnukid/gami-server/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/thnukid/gami-server/events",
+    "assignees_url": "https://api.github.com/repos/thnukid/gami-server/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/thnukid/gami-server/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/thnukid/gami-server/tags",
+    "blobs_url": "https://api.github.com/repos/thnukid/gami-server/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/thnukid/gami-server/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/thnukid/gami-server/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/thnukid/gami-server/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/thnukid/gami-server/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/thnukid/gami-server/languages",
+    "stargazers_url": "https://api.github.com/repos/thnukid/gami-server/stargazers",
+    "contributors_url": "https://api.github.com/repos/thnukid/gami-server/contributors",
+    "subscribers_url": "https://api.github.com/repos/thnukid/gami-server/subscribers",
+    "subscription_url": "https://api.github.com/repos/thnukid/gami-server/subscription",
+    "commits_url": "https://api.github.com/repos/thnukid/gami-server/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/thnukid/gami-server/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/thnukid/gami-server/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/thnukid/gami-server/issues/comments/{number}",
+    "contents_url": "https://api.github.com/repos/thnukid/gami-server/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/thnukid/gami-server/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/thnukid/gami-server/merges",
+    "archive_url": "https://api.github.com/repos/thnukid/gami-server/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/thnukid/gami-server/downloads",
+    "issues_url": "https://api.github.com/repos/thnukid/gami-server/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/thnukid/gami-server/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/thnukid/gami-server/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/thnukid/gami-server/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/thnukid/gami-server/labels{/name}",
+    "releases_url": "https://api.github.com/repos/thnukid/gami-server/releases{/id}",
+    "created_at": 1409300896,
+    "updated_at": "2014-09-02T06:40:14Z",
+    "pushed_at": 1410791940,
+    "git_url": "git://github.com/thnukid/gami-server.git",
+    "ssh_url": "git@github.com:thnukid/gami-server.git",
+    "clone_url": "https://github.com/thnukid/gami-server.git",
+    "svn_url": "https://github.com/thnukid/gami-server",
+    "homepage": null,
+    "size": 7740,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "Ruby",
+    "has_issues": true,
+    "has_downloads": true,
+    "has_wiki": true,
+    "has_pages": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 1,
+    "forks": 0,
+    "open_issues": 1,
+    "watchers": 0,
+    "default_branch": "master",
+    "stargazers": 0,
+    "master_branch": "master"
+  },
+  "pusher": {
+    "name": "thnukid",
+    "email": "thnukid@users.noreply.github.com"
+  }
+}

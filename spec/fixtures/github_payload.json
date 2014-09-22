@@ -1,0 +1,142 @@
+{
+  "ref": "refs/heads/master",
+  "after": "ae403d639ea4b0578eda033027fd7a1417cb9dba",
+  "before": "3163faa8d1cab296eeae6927c009ea315141ee56",
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "compare": "https://github.com/thnukid/gami-githubwatcher/compare/3163faa8d1ca...ae403d639ea4",
+  "commits": [
+    {
+      "id": "ae403d639ea4b0578eda033027fd7a1417cb9dba",
+      "distinct": true,
+      "message": "fix json array, now sends data to gami server",
+      "timestamp": "2014-09-03T11:47:21+02:00",
+      "url": "https://github.com/thnukid/gami-githubwatcher/commit/ae403d639ea4b0578eda033027fd7a1417cb9dba",
+      "author": {
+        "name": "Eric Claus Bartholemy",
+        "email": "thnukid@users.noreply.github.com",
+        "username": "thnukid"
+      },
+      "committer": {
+        "name": "Eric Claus Bartholemy",
+        "email": "thnukid@users.noreply.github.com",
+        "username": "thnukid"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "gwProxy.rb",
+        "lib/gamiClient.rb"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "ae403d639ea4b0578eda033027fd7a1417cb9dba",
+    "distinct": true,
+    "message": "fix json array, now sends data to gami server",
+    "timestamp": "2014-09-03T11:47:21+02:00",
+    "url": "https://github.com/thnukid/gami-githubwatcher/commit/ae403d639ea4b0578eda033027fd7a1417cb9dba",
+    "author": {
+      "name": "Eric Claus Bartholemy",
+      "email": "thnukid@users.noreply.github.com",
+      "username": "thnukid"
+    },
+    "committer": {
+      "name": "Eric Claus Bartholemy",
+      "email": "thnukid@users.noreply.github.com",
+      "username": "thnukid"
+    },
+    "added": [
+
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+      "gwProxy.rb",
+      "lib/gamiClient.rb"
+    ]
+  },
+  "repository": {
+    "id": 23457863,
+    "name": "gami-githubwatcher",
+    "full_name": "thnukid/gami-githubwatcher",
+    "owner": {
+      "name": "thnukid",
+      "email": "thnukid@users.noreply.github.com"
+    },
+    "private": false,
+    "html_url": "https://github.com/thnukid/gami-githubwatcher",
+    "description": "Gamifing events of github with help of gami-gem and gami-server",
+    "fork": false,
+    "url": "https://github.com/thnukid/gami-githubwatcher",
+    "forks_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/forks",
+    "keys_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/teams",
+    "hooks_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/hooks",
+    "issue_events_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/events",
+    "assignees_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/tags",
+    "blobs_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/languages",
+    "stargazers_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/stargazers",
+    "contributors_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/contributors",
+    "subscribers_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/subscribers",
+    "subscription_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/subscription",
+    "commits_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/issues/comments/{number}",
+    "contents_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/merges",
+    "archive_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/downloads",
+    "issues_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/labels{/name}",
+    "releases_url": "https://api.github.com/repos/thnukid/gami-githubwatcher/releases{/id}",
+    "created_at": 1409301219,
+    "updated_at": "2014-09-02T09:33:10Z",
+    "pushed_at": 1409737646,
+    "git_url": "git://github.com/thnukid/gami-githubwatcher.git",
+    "ssh_url": "git@github.com:thnukid/gami-githubwatcher.git",
+    "clone_url": "https://github.com/thnukid/gami-githubwatcher.git",
+    "svn_url": "https://github.com/thnukid/gami-githubwatcher",
+    "homepage": null,
+    "size": 0,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "Ruby",
+    "has_issues": true,
+    "has_downloads": true,
+    "has_wiki": true,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 1,
+    "forks": 0,
+    "open_issues": 1,
+    "watchers": 0,
+    "default_branch": "master",
+    "stargazers": 0,
+    "master_branch": "master"
+  },
+  "pusher": {
+    "name": "thnukid",
+    "email": "thnukid@users.noreply.github.com"
+  }
+}
