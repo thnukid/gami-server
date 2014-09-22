@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :fact do
-    user nil
-    aggregated_fact_name "MyString"
-    value 1
+    user
+    aggregated_fact_name "git_commit_count"
+    value 10
   end
 end
