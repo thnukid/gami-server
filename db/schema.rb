@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905134008) do
+ActiveRecord::Schema.define(version: 20140919133734) do
 
   create_table "aliases", force: true do |t|
     t.string   "username"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20140905134008) do
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
+
+  create_table "facts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "aggregated_fact_name"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "facts", ["user_id"], name: "index_facts_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"
