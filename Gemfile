@@ -38,6 +38,8 @@ gem 'capistrano','~> 2.15.4'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#add sidekiq
+gem 'sidekiq'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
