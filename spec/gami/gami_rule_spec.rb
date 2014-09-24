@@ -6,6 +6,9 @@ describe Gami::Rule do
   let(:block_false){Proc.new { false }}
   let(:block_true){Proc.new { true }}
 
+  let(:blockX_false){Proc.new { (5*5) == 20 }}
+  let(:blockX_true){Proc.new { (5*5) == 25 }}
+
   subject{described_class.new(description, badge, &block_false)}
 
   describe "#new" do
@@ -45,7 +48,14 @@ describe Gami::Rule do
 
     context "block validates to true" do
       before {subject.instance_variable_set(:@block, block_true)}
-      it "validates false" do
+      it "validates true" do
+        expect(subject.applies?).to be(true)
+      end
+    end
+
+    context "complex block validates to true" do
+      before {subject.instance_variable_set(:@block, blockX_false)}
+      it "validates true" do
         expect(subject.applies?).to be(true)
       end
     end
