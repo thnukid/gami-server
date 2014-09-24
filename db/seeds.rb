@@ -35,3 +35,9 @@ u_musterfrau.events.create(name: 'git:commit', data: '"lines":[{added: 50, remov
 u_musterman.events.create(name: 'codeclimate:gpa', data: '"gpa":[{current: 2.99, before: 2.55}]')
 u_musterfrau.events.create(name: 'codeclimate:gpa', data: '"gpa":[{current: 3.99, before: 3.55}]')
 
+##add facts\
+u_musterman.facts.create(aggregated_fact_name: "commit_count", value: 1 )
+u_musterfrau.facts.create(aggregated_fact_name: "commit_count", value: 1 )
+
+u_musterman.facts.create(aggregated_fact_name: "push_count", value: 1 )
+u_musterfrau.facts.create(aggregated_fact_name: "push_count", value: 1 )

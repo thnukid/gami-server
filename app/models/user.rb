@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :aliases
   has_many :events
   has_many :badges
+  has_many :facts
 
   validates :username,:email, presence: true
   validates_uniqueness_of :username, :email
