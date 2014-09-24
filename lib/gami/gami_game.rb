@@ -1,10 +1,11 @@
 module Gami
   class GamiGame
-    attr_reader :rules
+    attr_reader :rules, :results
 
     def initialize(description, event, user)
       @description, @event, @user = description, event, user
       @rules ||= []
+      @results ||= []
     end
 
     def rule(description,badge,&block)
@@ -13,14 +14,15 @@ module Gami
 
     def validate?
       rules.each do |a_rule|
-        applyBadge(a_rule) if a_rule.applies?
+          results << Gami::GamiBadge.new(@user,a_rule) if a_rule.applies?
       end
     end
 
-    private
-    def applyBadge(rule)
-      Badge.create(:name => rule.badge, :description => rule.description, :picture => "http://placekitten.com/g/164/164",:user => user)
+    def apply
+      results.each do |badge|
+        p badge.info
+      end
     end
-
   end
+
 end
