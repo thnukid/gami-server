@@ -28,7 +28,7 @@ class GamiEngine
     @description = description
     @event = event
 
-    @payload = open("../../spec/fixtures/github_payload.json").read
+    @payload = open("../../../spec/fixtures/github_payload.json").read
     @fact = JSON.load(@payload)
 
     @rules ||= []
