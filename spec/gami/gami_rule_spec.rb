@@ -53,10 +53,10 @@ describe Gami::Rule do
       end
     end
 
-    context "complex block validates to true" do
+    context "complex block validates to false" do
       before {subject.instance_variable_set(:@block, blockX_false)}
-      it "validates true" do
-        expect(subject.applies?).to be(true)
+      it "validates false" do
+        expect(subject.applies?).to be(false)
       end
     end
   end
