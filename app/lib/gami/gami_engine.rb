@@ -8,7 +8,7 @@ module Gami
       @games.each do |g|
         if(convert_event_to_class(@lookForEvent).include? @g.to_s)
           #class_send(convert_event_to_class(@lookForEvent),"perform_game", @user)
-          require_relative(convert_event_to_file(@lookForEvent))
+          #require_relative(convert_event_to_file(@lookForEvent))
           convert_event_to_class(@lookForEvent).constantize.perform_game(@user) if Object.const_defined?(convert_event_to_class(@lookForEvent))
           break
         end
@@ -24,7 +24,7 @@ module Gami
     end
 
     def self.convert_event_to_file(event_name)
-      event_name.lowercase.tr(':','_')
+      event_name.downcase.tr(':','_').concat('.rb')
     end
 
     def self.class_send(class_name, method, *args)
