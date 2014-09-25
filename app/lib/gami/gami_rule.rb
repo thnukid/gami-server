@@ -9,10 +9,16 @@ module Gami
     end
 
     def applies?
-      is_true = true
+      #no block given: will always be true
+      no_block_or_true = true
       unless self.block.nil?
-        is_true = self.block.call
+        called = self.block.call
+        #True Class case
+        if called.kind_of?(TrueClass) || called.kind_of?(FalseClass)
+          no_block_or_true = called
+        end
       end
+      no_block_or_true
     end
   end
 end
