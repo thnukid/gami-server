@@ -7,8 +7,14 @@ class Fact < ActiveRecord::Base
   def self.aggregate_for_user(user, fact_name, value)
     fact_exists = Fact.where(user: user, aggregated_fact_name: fact_name).first
 
-    return Fact.create user: user, aggregated_fact_name: fact_name, value: value unless fact_exists
+    unless fact_exists
+      new_fact = Fact.create user: user, aggregated_fact_name: fact_name, value: value
+      return new_fact.value
+    else
+      fact_exists.update_attribute(:value, fact_exists.value += value)
+      return fact_exists.value
+    end
 
-    fact_exists.update_attribute(:value, fact_exists.value += value)
+    #return the value of the fact, for comparison in rule
   end
 end

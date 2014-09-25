@@ -19,8 +19,8 @@ RSpec.describe Fact, :type => :model do
 
     context "valid user" do
       describe "adding a fact" do
-        it{expect(subject.value).to eql(10)}
-        it{expect(subject).to be_kind_of(Fact)}
+        it{expect(subject).to eql(10)}
+        #it{expect(subject).to be_kind_of(Fact)}
         it{expect{subject}.to change{Fact.count}.from(0).to(1) }
       end
     end
