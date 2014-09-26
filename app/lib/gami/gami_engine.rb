@@ -1,21 +1,25 @@
 module Gami
   class GamiEngine
+
     def self.run(event)
-      @games = ['GitPush', 'GitCommit']
-      @lookForEvent = event.name
-      @user = event.user
+      called_game = convert_event_to_class(event.name)
 
-      @games.each do |g|
-        if(convert_event_to_class(@lookForEvent).include? @g.to_s)
-          #class_send(convert_event_to_class(@lookForEvent),"perform_game", @user)
-          #require_relative(convert_event_to_file(@lookForEvent))
-          convert_event_to_class(@lookForEvent).constantize.perform_game(@user) if Object.const_defined?(convert_event_to_class(@lookForEvent))
-          break
-        end
+      loaded_games.each do |game|
+        return class_send(called_game, "perform_game", event.user) if called_game.include? @game.to_s
       end
+    end
 
-      #require_relative "games/"
-      puts "I will be coordinating the gami games, yippi glockenbeat. #{event.inspect}"
+    private
+    #available games, TODO: load dynamic
+    def self.loaded_games
+      ['GitPush', 'GitCommit']
+    end
+
+    #calls the defined game
+    def self.class_send(class_name, method, *args)
+      return nil unless Object.const_defined?(class_name)
+      c = Object.const_get(class_name)
+      c.respond_to?(method) ? c.send(method, *args) : nil
     end
 
     #expect that the event is seperated by "{service}:{event}"
@@ -25,12 +29,6 @@ module Gami
 
     def self.convert_event_to_file(event_name)
       event_name.downcase.tr(':','_').concat('.rb')
-    end
-
-    def self.class_send(class_name, method, *args)
-        return nil unless Object.const_defined?(class_name)
-        c = Object.const_get(class_name)
-        c.respond_to?(method) ? c.send(method, *args) : nil
     end
 
   end
