@@ -20,7 +20,7 @@ module Gami
 
     def apply
       results.each do |badge|
-        p badge.info
+        Badge.create badge.attributes
       end
     end
   end
