@@ -1,4 +1,6 @@
 require 'bundler/capistrano'
+#require 'capistrano/sidekiq'
+
 ssh_options[:forward_agent] = true
 set :keep_releases, 3
 set :domain, 'root@178.79.154.34'

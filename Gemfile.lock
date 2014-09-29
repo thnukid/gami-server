@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/seuros/capistrano-sidekiq.git
+  revision: f6b8123a57d80c3c869117a2e1938f61cbba2d33
+  specs:
+    capistrano-sidekiq (0.3.8)
+      capistrano
+      sidekiq
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -180,6 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano (~> 2.15.4)
+  capistrano-sidekiq!
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   jbuilder (~> 2.0)
