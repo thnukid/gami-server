@@ -1,0 +1,13 @@
+*.rdb
+*.swp
+Gemfile.lock
+/tmp/
+/.idea
+/.yardoc
+/coverage/*
+/doc/
+/nohup.out
+/pkg/*
+/rdsrv
+/redis/*
+/test/db

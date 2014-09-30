@@ -39,7 +39,7 @@ gem 'capistrano','~> 2.15.4'
 # gem 'debugger', group: [:development, :test]
 
 #add sidekiq, + web interface of sidekiq
-gem 'sidekiq'
+gem 'sidekiq', '< 3'
 gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq', group: :developement
 gem 'sinatra', '>= 1.3.0', :require => nil
 

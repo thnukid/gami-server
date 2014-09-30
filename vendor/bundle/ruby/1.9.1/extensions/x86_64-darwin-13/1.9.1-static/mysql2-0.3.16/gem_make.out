@@ -1,0 +1,29 @@
+/Users/ericclaus/.rbenv/versions/1.9.3-p547/bin/ruby -r ./siteconf20140930-45468-1yuqlz6.rb extconf.rb 
+checking for ruby/thread.h... no
+checking for rb_thread_blocking_region()... yes
+checking for rb_wait_for_single_fd()... yes
+checking for rb_hash_dup()... yes
+checking for rb_intern3()... yes
+-----
+Using mysql_config at /usr/local/bin/mysql_config
+-----
+checking for mysql.h... yes
+checking for errmsg.h... yes
+checking for mysqld_error.h... yes
+-----
+Setting rpath to /usr/local/Cellar/mysql/5.6.20/lib
+-----
+creating Makefile
+
+make  clean
+
+make
+compiling client.c
+compiling infile.c
+compiling mysql2_ext.c
+compiling result.c
+linking shared-object mysql2/mysql2.bundle
+
+make  install
+/usr/bin/install -c -m 0755 mysql2.bundle .gem.20140930-45468-kpuax5/mysql2
+installing default mysql2 libraries
