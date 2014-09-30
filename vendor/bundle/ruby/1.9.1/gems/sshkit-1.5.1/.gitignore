@@ -1,5 +1,0 @@
-*.gem
-.yardoc
-.vagrant*
-test/tmp
-Gemfile.lock
