@@ -1,9 +1,9 @@
 #describes the game rules of github push game
 module Gami
-  class GitCommit
+  class GitPush
 
     def self.perform_game(for_user)
-      game = GamiGame.new("Gives a user badges based on github push events", 'git:commit', for_user)
+      game = GamiGame.new("Gives a user badges based on github push events", 'git:push', for_user)
 
       #apply once the fact
       fact = Fact.aggregate_for_user(for_user,"commit_count",1)
