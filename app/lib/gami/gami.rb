@@ -2,7 +2,7 @@ require_relative('gami_badge')
 require_relative('gami_rule')
 require_relative('gami_game')
 require_relative('gami_engine')
-require_relative('games/git_commit')
+require_relative('games/git_push')
 
 module Gami
   def self.load?

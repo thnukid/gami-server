@@ -12,7 +12,7 @@ module Gami
     private
     #available games, TODO: load dynamic
     def self.loaded_games
-      ['GitPush', 'GitCommit']
+      ['GitPush']
     end
 
     #calls the defined game
