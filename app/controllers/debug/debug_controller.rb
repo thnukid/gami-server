@@ -16,5 +16,9 @@ module Debug
       @user = User.all
       render json: @user.reverse_order.to_json
     end
+    def badge
+      @badge = Badge.all
+      render json: @badge.reverse_order.to_json
+    end
   end
 end

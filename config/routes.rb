@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   namespace :debug do
     get '/', to: 'debug#events'
-    get '/a', to: 'debug#alias'
-    get '/u', to: 'debug#users'
+    get '/alias', to: 'debug#alias'
+    get '/user', to: 'debug#users'
+    get '/badge', to: 'debug#badge'
   end
 
 end
