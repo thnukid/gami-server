@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     post 'events', to: 'events#create'
-    get 'users/', to: 'api#index'
-    get 'users/:username', to: 'api#user'
-    get 'users/:username/badges', to: 'api#badges'
-    get 'users/:username/aliases', to: 'api#aliases'
+    resources :users, param: :name do
+      resources :badges
+      resources :aliases
+    end
  end
 
   namespace :debug do
