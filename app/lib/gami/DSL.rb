@@ -1,3 +1,5 @@
+require_relative "gami"
+puts Gami.load?
 module CreateGame
   @registry = [] 
 
@@ -20,6 +22,22 @@ class DefinitionProxy
     #rules << options[:lteq]
   end
 end
+
+class Rule < BasicObject
+  attr_reader :attributes
+
+  def initialize
+    @attributes = {}
+  end
+
+  def method_missing(name, *args, &block)
+    @attributes[name] = args[0]
+  end
+
+end
+
+
+
 #receive_badge "Boarding", with_label: "Welcome, to the crew! ", using_property: "commit" , lteq: 1
 #receive_badge "Boarding", with_label: "Welcome, to the crew! ", using_property: "commit" , lteq: 1
 #receive_badge "Boarding", with_label: "Welcome, to the crew! ", using_property: "commit" , lteq: 1
