@@ -1,5 +1,5 @@
 #named paramaters in ruby - hash - named keyword argument
-a = CreateGame.define do
+class GitPush
   on_event "git:push" do
     receive_badge "Boarding", with_label: "Welcome, to the crew! ", using_property: "commit" , lteq: 1
     receive_badge "Intern", with_label: "You slowly getting accquainted with the code.", using_property: 'commit', lteq: 10
@@ -9,4 +9,3 @@ a = CreateGame.define do
     receive_badge "PwnAge", with_label: "Code becomes you, you becomes code", using_property: 'commit', lteq: 50
   end
 end
-puts a.inspect

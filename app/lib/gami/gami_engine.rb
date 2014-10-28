@@ -12,7 +12,11 @@ module Gami
     private
     #available games, TODO: load dynamic
     def self.loaded_games
-      ['GitPush']
+      games = []
+      Dir.glob("games/*.rb") do |game_file|
+        games << game_file.class.name.split('::').last if require_relative game_file
+      end
+      games
     end
 
     #calls the defined game
