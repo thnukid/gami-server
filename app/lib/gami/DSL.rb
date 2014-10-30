@@ -58,7 +58,7 @@ class GamiDSL
 
   #returns the fact from the database
   def value_for(prop)
-    10
+   49 
   end
 
 
