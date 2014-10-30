@@ -1,12 +1,8 @@
-require_relative "gami"
-puts Gami.load?
-
 module Game
   def self.define(description, &block)
     dsl_instance = GamiDSL.new description
     dsl_instance.instance_eval(&block)
-    Gami::GamiEngine.add_game(dsl_instance)
-    dsl_instance.print2
+    Gami::GamiEngine.new.add_game = dsl_instance.game
   end
 end
 
