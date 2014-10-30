@@ -1,11 +1,13 @@
 module Gami
   class Rule
-    attr_reader :description, :badge, :block
+    attr_reader :description, :badge, :block, :property
 
-    def initialize(description, badge, &block)
+    def initialize(description, badge, property, &block)
       @description = description
       @badge = badge
+      @property = property
       @block = block
+
     end
 
     def applies?
