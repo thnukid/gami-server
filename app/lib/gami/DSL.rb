@@ -5,6 +5,7 @@ module Game
   def self.define(description, &block)
     dsl_instance = GamiDSL.new description
     dsl_instance.instance_eval(&block)
+    Gami::GamiEngine.add_game(dsl_instance)
     dsl_instance.print2
   end
 end
@@ -74,8 +75,6 @@ end
   puts '###start dsl'
   #load ('DSL_Game.rb')
 
-class GitPush
-  include Game
   Game.define "Receive badges for commiting to github" do
     on_event "git:push" do
       receive_badge "Boarding", with_label: "Welcome, to the crew! ", using_property: "commit" , lteq: 1
@@ -86,6 +85,5 @@ class GitPush
       receive_badge "PwnAge", with_label: "Code becomes you, you becomes code", using_property: 'commit', lteq: 50
     end
   end
-end
   puts "###End Reading"
 
