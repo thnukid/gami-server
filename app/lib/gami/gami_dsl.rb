@@ -23,19 +23,11 @@ module Gami
     def receive_badge(name, options = {})
       label = options[:with_label]
       property = options[:using_property]
+      #TODO: Block validation
       block = Gami::Predication.new.build(options)
 
       #attach the rule to the game
       @game.add_rule(label, name, property , &block)
-    end
-
-
-    def print2
-      game.validate?
-      game.results.each do |b|
-        puts b.inspect
-      end
-      #puts @game.inspect
     end
   end
 end

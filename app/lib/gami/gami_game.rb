@@ -9,22 +9,26 @@ module Gami
     end
 
     def run
-      validate
-      puts "apply badges" # apply
+      validate_rules
+      apply_badges
     end
 
-    def add_rule(description,badge, property,&block)
+    def properties
+      @rules.map(&:property).uniq
+    end
+
+    def add_rule(description,badge, property, &block)
       rules << Gami::Rule.new(description,badge,property, &block)
     end
 
-
-    def validate
+    private
+    def validate_rules
       rules.each do |a_rule|
           results << Gami::GamiBadge.new(@user,a_rule) if a_rule.applies?
       end
     end
 
-    def apply
+    def apply_badges
       results.each do |badge|
         Badge.create badge.attributes
       end

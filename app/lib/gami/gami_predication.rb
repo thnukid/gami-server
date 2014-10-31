@@ -1,8 +1,10 @@
 module Gami
   class Predication
 
-    def self.build(options = {})
+    def build(options = {})
       @property = options[:using_property]
+      #@event = event
+      binding.pry
       return condition(options)
     end
 
@@ -21,7 +23,8 @@ module Gami
 
     #returns the fact from the database
     def value_for(prop)
-      49
+      #Fact.where(value: prop).first
+      10
     end
   end
 end
