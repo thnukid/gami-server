@@ -21,7 +21,6 @@ module Gami
       rules << Gami::Rule.new(description,badge,property, &block)
     end
 
-    private
     def validate_rules
       rules.each do |a_rule|
           results << Gami::GamiBadge.new(@user,a_rule) if a_rule.applies?
@@ -34,5 +33,4 @@ module Gami
       end
     end
   end
-
 end

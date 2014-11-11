@@ -3,8 +3,6 @@ module Gami
 
     def build(options = {})
       @property = options[:using_property]
-      #@event = event
-      binding.pry
       return condition(options)
     end
 
@@ -23,8 +21,7 @@ module Gami
 
     #returns the fact from the database
     def value_for(prop)
-      #Fact.where(value: prop).first
-      10
+      Fact.where(aggregated_fact_name: @property).first
     end
   end
 end

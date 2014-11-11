@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
 
   def aggregate_properties(properties)
     properties.each do |property|
-      Fact.aggregate_for_user(user, property,parsed_data['game'][property]) if parsed_data['game'].has_key?(property)
+      Fact.aggregate_for_user(user, property, parsed_data['game'][property]) if parsed_data['game'].has_key?(property)
     end
   end
 
