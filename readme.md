@@ -45,8 +45,8 @@ We define a game for receiving badges based on github commits. The game is run b
 ```ruby
 Game.define "Receive badges for commiting to github" do
   on_event "git:push" do
-    receive_badge "Boarding", with_label: "Welcome, to the crew! ", using_property: "commit" , lteq: 1
-    receive_badge "Getting started", with_label: "You commited your first 10 commits, keep it up!", using_property: "commit" , lteq: 10
+    receive_badge "Boarding", with_label: "Welcome, to the crew! ", using_property: "commit" ,gteq: 1
+    receive_badge "Getting started", with_label: "You commited your first 10 commits, keep it up!", using_property: "commit" , gteq: 10
   end
 end
 ```
@@ -57,7 +57,7 @@ Game.define "{DESCRIPTION OF THE GAME}" do
   #describe the event on which the rules shall be evaluated
   on_event "{EVENT}" do
     #define the rules, when satisfied a badge gets assigned to the user
-    receive_badge "{BADGE NAME}", with_label: "{BADGE DESCRIPTION} ", using_property: "{EVENT DATA TO EVALUATE CONDITION AGAINST}" , lteq: {CONDITION} 
+    receive_badge "{BADGE NAME}", with_label: "{BADGE DESCRIPTION} ", using_property: "{EVENT DATA TO EVALUATE CONDITION AGAINST}" , gteq: {CONDITION} 
     #add more rules
   end
 end
