@@ -1,14 +1,15 @@
 module Gami
   class GamiGame
-    attr_reader :rules, :results, :description, :event, :user
+    attr_reader :rules, :results, :description, :event
 
-    def initialize(description, event, user)
-      @description, @event, @user = description, event, user
+    def initialize(description, event)
+      @description, @event = description, event
       @rules ||= []
       @results ||= []
     end
 
-    def run
+    def run(event)
+      @event = event
       validate_rules
       apply_badges
     end
@@ -17,19 +18,19 @@ module Gami
       @rules.map(&:property).uniq
     end
 
-    def add_rule(description,badge, property, &block)
-      rules << Gami::Rule.new(description,badge,property, &block)
+    def add_rule(description,badge, property, conditions, &block)
+      rules << Gami::Rule.new(description,badge,property, conditions, &block)
     end
 
     def validate_rules
       rules.each do |a_rule|
-          results << Gami::GamiBadge.new(@user,a_rule) if a_rule.applies?
+        results << Gami::GamiBadge.new(event.user,a_rule) if a_rule.applies?(event.user)
       end
     end
 
     def apply_badges
       results.each do |badge|
-        Badge.create badge.attributes
+        Badge.where(badge.attributes).first_or_create
       end
     end
   end

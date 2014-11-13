@@ -1,9 +1,16 @@
 module Gami
   class GamiEngine
-    attr_accessor :games
+    attr_accessor :games, :dsl_path
 
-    def initialize
+
+    def initialize(dsl_load_path=nil)
       @games = []
+
+      if dsl_load_path
+        @dsl_path = dsl_load_path
+      else
+        @dsl_path = File.dirname(__FILE__) + "/games/*.gami"
+      end
       eval_games
     end
 
@@ -14,7 +21,7 @@ module Gami
       #validates the game when the event matches eg. git:pushi
       #game has event as string, event.name is the rails model event
       @games.each do |game|
-        game.run if game.event.to_s == event.name.to_s
+        game.run(event) if game.event.to_s == event.name.to_s
       end
     end
 
@@ -38,7 +45,7 @@ module Gami
 
     def load_games
       raw_games = []
-      Dir.glob(File.dirname(__FILE__) + "/games/*.gami") do |gami_file|
+      Dir.glob(dsl_path) do |gami_file|
         raw_games << File.read(gami_file) {
           |file| file.read
         }

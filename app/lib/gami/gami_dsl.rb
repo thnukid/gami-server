@@ -13,11 +13,11 @@ module Gami
       @game_config = {:description => description}
     end
 
-    def on_event(event)
       #set event name as string
+    def on_event(event)
       @game_config[:event] =  event
       #create a new Game
-      @game = Gami::GamiGame.new(@game_config[:description], @game_config[:event], User.first)
+      @game = Gami::GamiGame.new(@game_config[:description], @game_config[:event])
       #execute rest of the dsl
       yield
       #return game
@@ -30,7 +30,7 @@ module Gami
       block = Gami::Predication.new.build(options)
 
       #attach the rule to the game
-      @game.add_rule(label, name, property , &block)
+      @game.add_rule(label, name, property, options, &block)
     end
   end
 end

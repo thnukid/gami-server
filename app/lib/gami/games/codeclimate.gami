@@ -1,7 +1,7 @@
 #describes code climate
 Game.define "Receive badges changing code climate" do
   on_event "codeclimate:push" do
-    receive_badge "Weatherman", with_label: "You the weather man", using_property: "commits_count" , lteq: 4
-    receive_badge "Sunshine", with_label: "You slowly change the climate in code.", using_property: 'commits_count', lteq: 4
+    receive_badge "Weatherman", with_label: "You the weather man", using_property: "commits_count" , lteq: 1
+    receive_badge "Sunshine", with_label: "You slowly change the climate in code.", using_property: 'commits_count', lteq: 2
   end
 end
