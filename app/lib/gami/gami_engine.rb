@@ -1,37 +1,56 @@
 module Gami
   class GamiEngine
+    attr_accessor :games, :dsl_path
 
-    def self.run(event)
-      called_game = convert_event_to_class(event.name)
 
-      loaded_games.each do |game|
-        return class_send(called_game, "perform_game", event.user) if called_game.include? @game.to_s
+    def initialize(dsl_load_path=nil)
+      @games = []
+
+      if dsl_load_path
+        @dsl_path = dsl_load_path
+      else
+        @dsl_path = File.dirname(__FILE__) + "/games/*.gami"
+      end
+      eval_games
+    end
+
+    def run(event)
+      aggregate_properties(event) #aggregates facts based on the event with all defined properties passed
+
+      #loops through evaled game dsl
+      #validates the game when the event matches eg. git:pushi
+      #game has event as string, event.name is the rails model event
+      @games.each do |game|
+        game.run(event) if game.event.to_s == event.name.to_s
       end
     end
 
-    private
-    #available games, TODO: load dynamic
-    def self.loaded_games
-      ['GitPush']
+    def aggregate_properties(event)
+      event.aggregate_properties(properties)
     end
 
-    #calls the defined game
-    def self.class_send(class_name, method, *args)
-      return nil unless Object.const_defined?(class_name)
-      c = Object.const_get(class_name)
-      c.respond_to?(method) ? c.send(method, *args) : nil
+    #flatten the array (1dimension)
+    #map/retrieve the properties of games
+    def properties
+      games.flat_map(&:properties).uniq
     end
 
-    #expect that the event is seperated by "{service}:{event}"
-    def self.convert_event_to_class(event_name)
-      event_name.titleize.tr(':','').prepend("Gami::")
+    #Reading the DSL into a games array
+    #gets evaluated directly since module definition of Game.define
+    def eval_games
+      load_games.each do |game|
+        @games << eval(game)
+      end
     end
 
-    def self.convert_event_to_file(event_name)
-      event_name.downcase.tr(':','_').concat('.rb')
+    def load_games
+      raw_games = []
+      Dir.glob(dsl_path) do |gami_file|
+        raw_games << File.read(gami_file) {
+          |file| file.read
+        }
+      end
+      raw_games
     end
-
   end
 end
-
-
