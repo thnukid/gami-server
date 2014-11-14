@@ -4,7 +4,7 @@ Game.define "Receive badges when people are watching your repository" do
     receive_badge "First Star", with_label: "Your repository was starred, congrats!", using_property: "star_count" , gteq: 1
     receive_badge "Second Star", with_label: "Hey, people are interested in your work", using_property: "star_count" , gteq: 2
     receive_badge "Stars", with_label: "Seems your repository is gaining popularity.", using_property: "star_count" , gteq: 3
-    receive_badge "Take-off", with_label: "Wow, seems your repository experiences an take-off in the community. Keep it up!", using_property: "star_count" , gteq: 5
+    receive_badge "Take OFF", with_label: "Wow, seems your repository experiences an take-off in the community. Keep it up!", using_property: "star_count" , gteq: 5
     receive_badge "Indispensable", with_label: "The community likes what you are contributing", using_property: "star_count" , gteq: 10
   end
 end
