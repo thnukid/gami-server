@@ -12,7 +12,7 @@ describe Gami::GamiEngine do
       end
       describe 'game' do
         it 'has many rules' do
-          expect(subject.games.first.rules.size).to eql(7)
+          expect(subject.games.first.rules.size).to eql(6)
         end
         it 'has many properties to aggregate' do
           expect(subject.games.first.properties.size).to eql(1)
