@@ -5,7 +5,7 @@ module Gami
       @user, @rule = user, rule
     end
     def attributes
-      {:name => @rule.badge, :description => @rule.description, :picture => "http://placekitten.com/g/164/164",:user => @user}
+      {:name => @rule.badge, :description => @rule.description, :picture => GamiImg2css.translateImg(@rule.badge) ,:user => @user}
     end
   end
 end
