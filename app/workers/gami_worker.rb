@@ -6,7 +6,7 @@ class GamiWorker
     event = Event.find(event_id)
 
     #run the Gami Engine with event
-    Gami::GamiEngine.run(event)
+    Gami::GamiEngine.new.run(event)
 
   end
 end
