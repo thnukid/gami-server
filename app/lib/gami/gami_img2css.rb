@@ -4,7 +4,7 @@ module Gami
     def self.translateImg(badge_name)
       badges ||= badges_css #get array with defined badges 2 css
       b = badge_name.delete(" ").downcase #delete whitespace
-      badges[b.to_sym] if badges.has_key?(b.to_sym)
+      return badges[b.to_sym] if badges.has_key?(b.to_sym)
       'http://placekitten.com/164/164' #return kitten if not found
     end
     def self.badges_css

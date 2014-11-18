@@ -11,5 +11,8 @@ describe Gami::GamiImg2css do
     it "return a kitten " do
       expect(subject.translateImg('adasdasd')).to match("http://")
     end
+    it "returns a css " do
+      expect(subject.translateImg('firststar')).to match("fa-star-o")
+    end
   end
 end
