@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get '/alias', to: 'debug#alias'
     get '/user', to: 'debug#users'
     get '/badge', to: 'debug#badge'
+    get '/fact', to: 'debug#fact'
   end
 
 end

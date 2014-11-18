@@ -22,6 +22,10 @@ module Debug
       render json: @badge.reverse_order.to_json
     end
 
+    def fact
+      @fact = Fact.all
+      render json: @fact.reverse_order.to_json
+    end
     private
     def set_headers
       headers['Access-Control-Allow-Origin'] = '*'
