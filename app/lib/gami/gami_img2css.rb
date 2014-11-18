@@ -5,7 +5,7 @@ module Gami
       badges ||= badges_css #get array with defined badges 2 css
       b = badge_name.delete(" ").downcase #delete whitespace
       return badges[b.to_sym] if badges.has_key?(b.to_sym)
-      'http://placekitten.com/164/164' #return kitten if not found
+      create_b("question") #return question sign if not found
     end
     def self.badges_css
       {
@@ -24,7 +24,7 @@ module Gami
     end
 
     def self.create_b(icon)
-      sprintf('<span class="fa-stack fa-5x"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-%s fa-stack-1x"></i></span>', icon)
+     sprintf('<span class="fa-stack fa-3x"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-%s fa-stack-1x"></i></span>', icon)
     end
   end
 end
