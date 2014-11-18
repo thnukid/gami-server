@@ -4,7 +4,7 @@ module Api
     respond_to :json
 
     def index
-      respond_with @user.badges, :only => [:name,:description,:picture]
+      respond_with @user.badges.reverse_order, :only => [:name,:description,:picture]
     end
   end
 end
