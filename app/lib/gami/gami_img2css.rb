@@ -1,6 +1,17 @@
 module Gami
   class GamiImg2css
     attr_reader :badge_css
+
+    def initialize(badge_assets_path = nil)
+      if badge_assets_path
+        @assets_path = badge_assets_path
+      else
+        @assets_path = File.dirname(__FILE__) + "/assets/*.json"
+      end
+
+    end
+
+
     def self.translateImg(badge_name)
       badges ||= badges_css #get array with defined badges 2 css
       b = badge_name.delete(" ").downcase #delete whitespace
