@@ -1,41 +1,35 @@
+require 'pry'
 module Gami
-  class GamiImg2css
-    attr_reader :badge_css
+  class GamiAssets 
+    attr_accessor :badges, :assets_path
 
-    def initialize(badge_assets_path = nil)
-      if badge_assets_path
-        @assets_path = badge_assets_path
+    def initialize(assets_path = nil)
+      if assets_path
+        @assets_path = assets_path
       else
         @assets_path = File.dirname(__FILE__) + "/assets/*.json"
       end
 
+      @badges = {}
+      load_assets
     end
 
-
-    def self.translateImg(badge_name)
-      badges ||= badges_css #get array with defined badges 2 css
-      b = badge_name.delete(" ").downcase #delete whitespace
-      return badges[b.to_sym] if badges.has_key?(b.to_sym)
-      create_b("question") #return question sign if not found
-    end
-    def self.badges_css
-      {
-        :firststar  => self.create_b('star-o'),
-        :secondstar  => self.create_b('star-half-o'),
-        :stars  => self.create_b('star'),
-        :takeoff  => self.create_b('space-shuttle'),
-        :indispensable => self.create_b('github-alt'),
-        :boarding => self.create_b('child'),
-        :intern => self.create_b('university'),
-        :apprenticeships => self.create_b('keyboard-o'),
-        :junior => self.create_b('graduation-cap'),
-        :senior => self.create_b('terminal'),
-        :pwnage => self.create_b('github-alt')
-      }
+    #The json has an array of values
+    #An item is in best case a single word, it removes whitespaces
+    #and looks up the value
+    def find_badge(name)
+      badge_name = name.delete(" ").downcase #delete whitespace
+      return name unless badges.has_key?(badge_name)
+      badges[badge_name] 
     end
 
-    def self.create_b(icon)
-     sprintf('<span class="fa-stack fa-3x"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-%s fa-stack-1x"></i></span>', icon)
+    private
+    def load_assets
+      Dir.glob(assets_path) do |json_file|
+        file = File.read json_file
+        data_hash = JSON.parse(file, :quirks_mode => true)
+        @badges.merge!(data_hash)
+      end
     end
   end
 end
