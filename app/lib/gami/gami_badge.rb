@@ -5,7 +5,11 @@ module Gami
       @user, @rule = user, rule
     end
     def attributes
-      {:name => @rule.badge, :description => @rule.description, :picture => GamiImg2css.translateImg(@rule.badge) ,:user => @user}
+      {:name => @rule.badge,
+       :description => @rule.description,
+       :picture => Gami::GamiAssets.new.find_badge(@rule.badge) ,
+       :user => @user
+      }
     end
   end
 end
