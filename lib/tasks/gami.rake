@@ -1,39 +1,34 @@
 require 'active_record'
+
+#Rake tasks for gami toolbelt
 namespace :gami do
 
-  desc "TODO: Set a fact to an number"
-  task set_fact_todo: :environment do
 
-    #puts "Fact name?:"
+  #Wipe gami data
 
-    #@fact = {}
-    #@fact[:name] = STDIN.gets.chomp
-    #@real_fact = Fact.where("aggregated_value" : @fact[:name])
-    #puts "Fact aggregation value?:"
-    #@fact[:value] = STDIN.gets.chomp
-
-    #if @fact[:name] && @fact[:value]
-      #puts @fact.inspect
-    #else
-      #return false
-    #end
-  end
-
-  desc "Reset Gami Badges"
-  task badge: :environment do
-    s = Badge.all.count
-    puts "Want to delete #{s} Badge? (Y/N)"
-    @confirm = STDIN.gets.chomp.downcase
-
-    if @confirm == 'y'
-    Badge.all.each do |b| 
-      puts b.destroy
+  namespace :wipe do
+    desc "GAMI TOOLBELT : Complete wipeout all game related data, facts and badges"
+    task :all => [:badges, :facts] do
+      f = Fact.all.count
+      b = Badge.all.count
+      puts "(╯°□°）╯︵ ┻━┻  Wiped all the things! Now there are #{f} Facts and #{b} Badges"
     end
-    end
-  end
 
-  desc "Reset Gami Badges"
-  task fact: :environment do
+    desc "GAMI TOOLBELT : Wipe Badges"
+    task badges: :environment do
+      s = Badge.all.count
+      puts "Want to delete #{s} Badge? (Y/N)"
+      @confirm = STDIN.gets.chomp.downcase
+
+      if @confirm == 'y'
+        Badge.all.each do |b| 
+          puts b.destroy
+        end
+      end
+    end
+
+  desc "GAMI TOOLBELT : Wipe Facts"
+  task facts: :environment do
     s = Fact.all.count
     puts "Want to delete #{s} Facts? (Y/N)"
     @confirm = STDIN.gets.chomp.downcase
@@ -45,4 +40,5 @@ namespace :gami do
     end
   end
 
+  end
 end
