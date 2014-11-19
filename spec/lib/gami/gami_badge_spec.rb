@@ -1,14 +1,23 @@
 require 'spec_helper'
-
+require 'rails_helper'
+require 'pry'
 describe Gami::GamiBadge do
-  let(:user){1}
-  let(:rule){Gami::Rule.new "sth","sth" do Proc.new{true} end}
-
+  let(:user){User.first}
+  let(:attr){
+    {:name => 'name', :description => 'desc',
+     :picture => Gami::GamiImg2css.translateImg('junior') , :user => user}
+  }
   subject{described_class.new(user,rule)}
 
   describe "badge" do
-    it "returns a hash" do
-      expect(subject.info).to include(:name => rule.badge, :description => rule.description, :picture => "http://placekitten.com/g/164/164", :user => user)
+    it 'creates a new badge' do
+      Badge.create(attr)
+      expect(user.badges.count).to eql(1)
+      expect(user.badges.first.picture).to match("fa-graduation-cap")
+    end
+    it 'has following attr' do
+      #let(:badge) {user.badges.first}
+      binding.pry
     end
   end
 end
