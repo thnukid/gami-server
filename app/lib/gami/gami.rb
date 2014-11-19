@@ -4,7 +4,7 @@ require_relative('gami_predication')
 require_relative('gami_game')
 require_relative('gami_engine')
 require_relative('gami_dsl')
-require_relative('gami_img2css')
+require_relative('gami_assets')
 
 module Gami
   def self.load?
