@@ -9,8 +9,8 @@
 #
 #Add 2 users
 
-u_musterman = User.create(username: 'Hans Mustermann', email: 'h.mustermann@localho.st', password_digest: '1234')
-u_musterfrau = User.create(username: 'Angi Musterfrau', email: 'a.musterfrau@localho.st', password_digest: '1234')
+u_musterman = User.create!(username: 'Hans Mustermann', email: 'h.mustermann@localho.st', password_digest: '12345678')
+u_musterfrau = User.create!(username: 'Angi Musterfrau', email: 'a.musterfrau@localho.st', password_digest: '12345678')
 
 u_musterman.aliases.create(username: 'Hans Github', email: 'h.mustermann@githo.st')
 u_musterman.aliases.create(username: 'Hans Codeclimate', email: 'h.mustermann@code.st')
