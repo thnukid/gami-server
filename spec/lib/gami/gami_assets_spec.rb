@@ -4,7 +4,7 @@ require 'rails_helper'
 describe Gami::GamiAssets do
 
   subject{Gami::GamiAssets.new(Rails.root + 'spec/fixtures/assets/*.json') }
-  
+
   describe 'assets' do
     it 'contains a pathname' do
       expect(subject.assets_path).to be_instance_of(Pathname)
