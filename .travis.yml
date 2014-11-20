@@ -1,6 +1,18 @@
 language: ruby
 rvm:
   - 2.1.1
+before_script:
+  - "mysql -e 'create database my_app_test;'"
+  - "cp ./config/.travis.database.yml ./config/database.yml"
+script:
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:test:prepare
+  - bundle exec rake spec
+after_failure:
+  - "mysql -e 'show databases;'"
+  - "cat ./config/database.yml"
+  - "echo $RAILS_ENV"
+  - "bundle exec rake --version"
 addons:
   code_climate:
     repo_token: 094c9651d11a1f7a10c7b93b72b7d3084ebd8fe0dc80438c782afc399a4f1423
