@@ -25,11 +25,9 @@ module Gami
       end
     end
     
-    private
     def aggregate_properties(event)
       event.aggregate_properties(properties)
     end
-
     #flatten the array (1dimension)
     #map/retrieve the properties of games
     def properties
