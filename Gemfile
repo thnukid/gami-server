@@ -46,12 +46,14 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
+  gem 'sqlite3'
   gem "spring-commands-rspec"
   gem 'pry'
 end
 
 group :test do
-    gem 'shoulda-matchers'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'shoulda-matchers'
 end
 
 
