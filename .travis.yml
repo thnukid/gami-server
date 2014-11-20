@@ -3,7 +3,7 @@ rvm:
   - 2.1.1
 env:
   test:
-    - SECRET_KEY_BASE="$(bundle exec rake secret)"
+    - SECRET_KEY_BASE=somesecrettokenonlyusedfortestingpurposesontravis
 before_script:
   - "mysql -e 'create database my_app_test;'"
   - "cp ./config/.travis.database.yml ./config/database.yml"
