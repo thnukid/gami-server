@@ -12,6 +12,8 @@ _____/\\\\\\\\\\\\_____/\\\\\\\\\_____/\\\\____________/\\\\__/\\\\\\\\\\\_
 ```
 A reuseable generic gamification toolbelt in ruby
 -----
+[![Code Climate](https://codeclimate.com/github/thnukid/gami-server/badges/gpa.svg)](https://codeclimate.com/github/thnukid/gami-server)
+[![Build Status](https://travis-ci.org/thnukid/gami-githubwatcher.svg)](https://travis-ci.org/thnukid/gami-githubwatcher)
 ### Gami Server
 Server for receiving gamification events, currently developed as the graduation
 project of [Eric Bartholemy](https://github.com/thnukid) @[KabisaICT](https://github.com/kabisaict). 
@@ -31,7 +33,7 @@ University guidance by Mr. Boots
 ### Gami Toolbelt
 [Gami-Githubwatcher](https://github.com/thnukid/gami-githubwatcher) :
 Using the gami client to send events to the gami-server. Forwards [Github webhooks](https://developer.github.com/webhooks/) 
-event to the server for evaluation.
+event to the server for evaluation. Compiles the game data
 
 [Gami-Server](https://github.com/thnukid/gami-server) : Evaluates events
 based on defined games to apply badges
@@ -41,7 +43,8 @@ to visualize received badges
 
 ### Gami DSL - Synopsis
 #### Basic Example
-We define a game for receiving badges based on github commits. The game is run based on a "git:push" event. When the total commit count is less than equal (lteq) 1, the user receives a "Boarding" badge.
+We define a game for receiving badges based on github commits. The game is run based on a "git:push" event (sent by [Gami-Githubwatcher](https://github.com/thunkid/gami-githubwatcher)).
+ When the total commit count is greater than equal (gteq) 1, the user receives a "Boarding" badge.
 ```ruby
 Game.define "Receive badges for commiting to github" do
   on_event "git:push" do
@@ -50,7 +53,7 @@ Game.define "Receive badges for commiting to github" do
   end
 end
 ```
-### Abstract Example
+#### Abstract Example
 ```ruby
 # define the game and give it a description
 Game.define "{DESCRIPTION OF THE GAME}" do
@@ -62,3 +65,14 @@ Game.define "{DESCRIPTION OF THE GAME}" do
   end
 end
 ```
+### Gami Assets - Badges
+You can define assets in a `.json` file under the `lib/gami/assets folder`, its key : value, default it returns the `Badge Name`. For the demo application, [fortawesome icons](http://fortawesome.github.io/Font-Awesome/)
+are used. When defining an Badge, gami assets will `lowercase` and `remove whitespace` from the `Badge Name`,
+#### Example (see [DSL Basic](#basic-example)
+```javascript
+{
+  'boarding' : 'star-o'
+  'gettingstarted' : 'starter_badge.png'
+}
+```
+
