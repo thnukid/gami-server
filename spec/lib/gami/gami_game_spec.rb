@@ -1,35 +1,41 @@
 require 'spec_helper'
-require 'pry'
+require 'rails_helper'
 
 describe Gami::GamiGame do
-  let(:description) {"Challenge in git commits. Who commits most?"}
-  let(:event) {"git:commit"}
-  let(:user) {1}
+  let(:options){{:gteq => 2, :using_property => ['commit']}}
+  let(:bTrue){Gami::Predication.new.build(options)}
+  let(:event){create :event}
 
-  let(:block_false){Proc.new {false}}
-  let(:block_true){Proc.new {true}}
-  let(:rule){Gami::Rule.new("test","test",&block_false)}
+  subject{described_class.new("Some Game", 'git:push')}
 
-  subject{described_class.new(description, event, user)}
-
-  describe "#new" do
-    it "initializes correctly with params" do
-      expect(subject).to be_instance_of described_class
-    end
-  end
-
-  describe "Rules" do 
-    before{
-      subject.add_rule("sth", "sth", "sth", &block_false)
-      subject.add_rule("sth", "sth", "sth", &block_true)
-    }
-    it "adds rule to the game" do
-      expect(subject.rules.count).to eql(2)
+  describe 'gami game' do
+    it 'initializes' do
+      expect(subject).to be_an_instance_of(described_class)
     end
 
-    xit "validates the rule, adds true ones to results" do
-      subject.validate_rules
-      expect(subject.results.count).to eql(1)
+    it 'contains rules' do
+      subject.add_rule('desc','super badge', 'commit', options, &bTrue)
+      subject.add_rule('desc','super badge', 'commiti', options, &bTrue)
+      expect(subject.rules.size).to eq(2)
+    end
+
+    context 'runs a game' do
+
+      it 'has no results' do
+        event.aggregate_properties(['commit'])
+        subject.run(event)
+        expect(subject.results.size).to eq(0) 
+      end
+
+      it 'has results' do
+        event.aggregate_properties(['commit'])
+        event.aggregate_properties(['commit'])
+        subject.add_rule('desc','super badge', 'commit', options, &bTrue)
+        subject.run(event)
+
+        expect(subject.results.size).to eq(1)
+        expect(Badge.count).to eq(1)
+      end
     end
   end
 end

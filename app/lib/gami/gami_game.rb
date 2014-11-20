@@ -9,19 +9,23 @@ module Gami
     end
 
     def run(event)
-      @event = event
+      @event = event #event was an string, but from this point is the event model itself
       validate_rules
       apply_badges
-    end
-
-    def properties
-      @rules.map(&:property).uniq
     end
 
     def add_rule(description,badge, property, conditions, &block)
       rules << Gami::Rule.new(description,badge,property, conditions, &block)
     end
 
+    #returns all properties on the rules
+    #get called by the engine to aggregate all properties
+    #contained in the rules
+    def properties
+      @rules.map(&:property).uniq
+    end
+
+    private
     def validate_rules
       rules.each do |a_rule|
         results << Gami::GamiBadge.new(event.user,a_rule) if a_rule.applies?(event.user)
