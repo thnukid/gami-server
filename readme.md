@@ -10,7 +10,7 @@ _____/\\\\\\\\\\\\_____/\\\\\\\\\_____/\\\\____________/\\\\__/\\\\\\\\\\\_
        _\//\\\\\\\\\\\\/__\/\\\_______\/\\\_\/\\\_____________\/\\\__/\\\\\\\\\\\_ 
         __\////////////____\///________\///__\///______________\///__\///////////__
 ```
-A reuseable generic gamification toolbelt in ruby
+A reusable generic gamification toolbelt in ruby
 -----
 [![Build Status](https://travis-ci.org/thnukid/gami-server.svg)](https://travis-ci.org/thnukid/gami-server)
 [![Code Climate](https://codeclimate.com/github/thnukid/gami-server/badges/gpa.svg)](https://codeclimate.com/github/thnukid/gami-server)

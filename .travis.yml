@@ -1,12 +1,10 @@
 language: ruby
 rvm:
   - 2.1.1
-env:
-  test:
-    - SECRET_KEY_BASE=somesecrettokenonlyusedfortestingpurposesontravis
 before_script:
   - "mysql -e 'create database my_app_test;'"
   - "cp ./config/.travis.database.yml ./config/database.yml"
+  - "cp ./config/.travis.secrets.yml ./config/secrets.yml"
 script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
