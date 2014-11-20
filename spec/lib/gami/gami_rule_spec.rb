@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'rails_helper'
-require 'pry'
 
 describe Gami::Rule do
   let(:options){{:gteq => 2, :using_property => ['commit']}}
@@ -19,7 +18,6 @@ describe Gami::Rule do
       it 'it applies true' do
         event.aggregate_properties(['commit'])
         event.aggregate_properties(['commit'])
-        binding.pry
         expect(subject.applies?(event.user)).to be(true)
       end
     end
