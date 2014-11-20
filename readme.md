@@ -27,7 +27,7 @@ University guidance by Mr. Boots
 
 #### Graduation Project: Basic Idea
 1. Receive events form a datasource to run rules on
-2. Server evaluates based on rules if a user receives a badge (define rules with a [DSL]())
+2. Server evaluates based on rules if a user receives a badge (define rules with a [DSL](#basic-example))
 3. A frontend displays the badges receives for a specific user
 
 ### Gami Toolbelt
@@ -66,13 +66,15 @@ Game.define "{DESCRIPTION OF THE GAME}" do
 end
 ```
 ### Gami Assets - Badges
-You can define assets in a `.json` file under the `lib/gami/assets folder`, its key : value, default it returns the `Badge Name`. For the demo application, [fortawesome icons](http://fortawesome.github.io/Font-Awesome/)
+You can define assets in a `.json` file under the `lib/gami/assets` folder, its key : value, default it returns the `Badge Name`. For the demo application, [fortawesome icons](http://fortawesome.github.io/Font-Awesome/)
 are used. When defining an Badge, gami assets will `lowercase` and `remove whitespace` from the `Badge Name`,
-#### Example (see [DSL Basic](#basic-example)
+#### Example (see [DSL Basic](#basic-example))
 ```javascript
+// lib/gami/assets/
 {
   'boarding' : 'star-o'
   'gettingstarted' : 'starter_badge.png'
 }
 ```
-
+### Getting Gamified
+TODO: Setup Guide
