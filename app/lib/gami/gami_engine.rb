@@ -24,7 +24,8 @@ module Gami
         game.run(event) if game.event.to_s == event.name.to_s
       end
     end
-
+    
+    private
     def aggregate_properties(event)
       event.aggregate_properties(properties)
     end
@@ -32,11 +33,6 @@ module Gami
     #flatten the array (1dimension)
     #map/retrieve the properties of games
     def properties
-      props = {}
-      games.each do
-        props[:properties]
-        properties
-      end
       games.flat_map(&:properties).uniq
     end
 

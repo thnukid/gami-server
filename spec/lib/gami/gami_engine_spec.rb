@@ -20,11 +20,10 @@ describe Gami::GamiEngine do
       end
     end
 
-    let(:event) {create :event, user: User.first}
-
+    let(:event){create :event}
     describe 'aggreation' do
       it 'aggregates all the properties of the loaded games' do
-        subject.aggregate_properties(event)
+        subject.run(event)
         expect(Fact.where(aggregated_fact_name: 'commit', user: event.user).first.value).to eql(1)
       end
    end
