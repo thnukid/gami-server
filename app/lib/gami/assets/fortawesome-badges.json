@@ -1,13 +1,14 @@
 {
-  "firststar" : "star-o",
-  "secondstar" : "star-half-o",
-  "stars" :  "star",
-  "takeoff" : "space-shuttle",
-  "indispensable" : "github-alt",
-  "boarding" : "child",
-  "intern" : "university",
-  "apprenticeships" : "keyboard-o",
-  "junior" : "graduation-cap",
-  "senior" : "terminal",
-  "pwnage" : "github-alt"
+  "firststar" : "fa-star-o",
+  "secondstar" : "fa-star-half-o",
+  "stars" :  "fa-star",
+  "takeoff" : "fa-space-shuttle",
+  "indispensable" : "fa-github-alt",
+  "boarding" : "fa-child",
+  "_intern" : "fa-university",
+  "intern" : "https://i.imgur.com/mGT6lh7.gif",
+  "apprenticeships" : "fa-keyboard-o",
+  "junior" : "fa-graduation-cap",
+  "senior" : "fa-terminal",
+  "pwnage" : "fa-github-alt"
 }
