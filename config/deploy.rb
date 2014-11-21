@@ -67,8 +67,8 @@ namespace :passenger do
 end
 namespace :sidekiq do
   task :start do
-    run "cd #{current_path} && bundle exec sidekiq -c 10 -e production -L log/sidekiq.log &"
-    p capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!§:w
+    run "cd #{current_path} && bundle exec sidekiq -c 10 -e production -L log/sidekiq.log -d"
+    p capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!
   end
   task :kill do
     sidekiq_process_id = capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!;
