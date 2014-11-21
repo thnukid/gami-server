@@ -1,4 +1,3 @@
-require 'pry'
 module Gami
   class GamiAssets 
     attr_accessor :badges, :assets_path
