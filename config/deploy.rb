@@ -58,10 +58,22 @@ namespace :rails_config do
 end
 
 namespace :passenger do
-    task :start do end
-      task :stop  do end
-        task :restart do
-              run "touch #{current_path}/tmp/restart.txt"
-                end
-          after 'deploy:restart', 'passenger:restart'
+  task :start do end
+  task :stop  do end
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+  after 'deploy:restart', 'passenger:restart'
+end
+namespace :sidekiq do
+  task :start do
+    run "cd #{current_path} && bundle exec sidekiq -c 10 -e production -L log/sidekiq.log &"
+    p capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!§:w
+  end
+  task :kill do
+    sidekiq_process_id = capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!;
+    run "kill -15 #{sidekiq_process_id}"
+  end
+  after 'deploy:restart', 'sidekiq:kill'
+  after 'deploy:restart', 'sidekiq:start'
 end
