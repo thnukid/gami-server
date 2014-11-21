@@ -70,10 +70,10 @@ namespace :sidekiq do
     run "cd #{current_path} && bundle exec sidekiq -c 10 -e production -L log/sidekiq.log -d"
     p capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!
   end
-  task :kill do
+  task :kill, :on_error => :continue do
     sidekiq_process_id = capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!;
     run "kill -15 #{sidekiq_process_id}"
   end
-  after 'deploy:restart', 'sidekiq:kill'
+  before 'sidekiq:start', 'sidekiq:kill'
   after 'deploy:restart', 'sidekiq:start'
 end
