@@ -6,14 +6,14 @@ run Rails.application
 require 'sidekiq'
 
 Sidekiq.configure_client do |config|
-    config.redis = { :size => 1 }
+  config.redis = { :size => 1 }
 end
 
 require 'sidekiq/web'
 map '/sidekiq' do
-    use Rack::Auth::Basic, "Protected Area" do |username, password|
-          username == 'sidekiq' && password == 'sideKiQ!404!'
-            end
+  use Rack::Auth::Basic, "Yoo0! Protected Area" do |username, password|
+    username == ENV["SIDEKIQ_USER"] && password == ENV["SIDEKIQ_PASS"]
+  end
 
-      run Sidekiq::Web
+  run Sidekiq::Web
 end
