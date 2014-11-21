@@ -12,7 +12,7 @@ end
 require 'sidekiq/web'
 map '/sidekiq' do
   use Rack::Auth::Basic, "Yoo0! Protected Area" do |username, password|
-    username == ENV["SIDEKIQ_USER"] && password == ENV["SIDEKIQ_PASS"]
+    username == Rails.application.sidekiq_user && password == Rails.application.sidekiq_pass
   end
 
   run Sidekiq::Web
