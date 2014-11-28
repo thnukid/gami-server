@@ -4,7 +4,9 @@ module Gami
 
     def initialize(description, event, options = {})
       @description, @event = description, event
-      @options = options 
+      @options = {
+        apply_next: true
+      }.merge options
       @rules ||= []
       @results ||= []
       @next_badges ||= []
@@ -14,7 +16,7 @@ module Gami
       @event = event #event was an string, but from this point is the event model itself
       validate_rules
       apply_earned_badges
-      apply_next_badges unless options.has_key?(:apply_next)
+      apply_next_badges if options.has_key?(:apply_next) && options[:apply_next] == true
     end
 
     def add_rule(description,badge, property, conditions, &block)

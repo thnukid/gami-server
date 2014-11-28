@@ -18,9 +18,9 @@ describe Gami::GamiGame do
       it 'initializes' do
         expect(subject).to be_an_instance_of(described_class)
       end
-      let(:sub_opt) {described_class.new "Some Game", "git:push", {:next_badges => 'show'}}
+      let(:sub_opt) {described_class.new "Some Game", "git:push" }
       it 'init with options' do
-        expect(sub_opt.options).to include(:next_badges)
+        expect(sub_opt.options).to include(:apply_next)
       end
     end
 
@@ -38,7 +38,7 @@ describe Gami::GamiGame do
         subject.add_rule('desc','super badge', 'commit', options, &bTrue) # true = 2
         subject.add_rule('desc','super ye', 'commit', opt_4, &block_4) #true = 4
         subject.add_rule('desc','super x', 'commit', opt_3, &block_3) #true = 3
-        subject.run(event)
+        subject.run(event) 
       }
 
       it 'has results' do
@@ -47,6 +47,8 @@ describe Gami::GamiGame do
       end
 
      it 'has inactive badges' do
+       subject.options[:apply_next] = false
+       binding.pry
         expect(subject.next_badges.size).to eq(1) 
         expect(Badge.where({hasEarned: false}).count).to eq(1)
       end 
