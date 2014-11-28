@@ -21,7 +21,6 @@ describe Gami::GamiGame do
       let(:sub_opt) {described_class.new "Some Game", "git:push", {:next_badges => 'show'}}
       it 'init with options' do
         expect(sub_opt.options).to include(:next_badges)
-        binding.pry
       end
     end
 
@@ -44,12 +43,12 @@ describe Gami::GamiGame do
 
       it 'has results' do
         expect(subject.results.size).to eq(2)
-        expect(Badge.count).to eq(2)
+        expect(Badge.where({hasEarned: true}).count).to eq(2)
       end
 
      it 'has inactive badges' do
-        binding.pry 
         expect(subject.next_badges.size).to eq(1) 
+        expect(Badge.where({hasEarned: false}).count).to eq(1)
       end 
     end
   end

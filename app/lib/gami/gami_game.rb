@@ -13,7 +13,8 @@ module Gami
     def run(event)
       @event = event #event was an string, but from this point is the event model itself
       validate_rules
-      apply_badges
+      apply_earned_badges
+      apply_next_badges unless options.has_key?(:apply_next)
     end
 
     def add_rule(description,badge, property, conditions, &block)
@@ -38,9 +39,16 @@ module Gami
       end
     end
 
-    def apply_badges
+    def apply_earned_badges
       results.each do |badge|
         Badge.where(badge.attributes).first_or_create
+      end
+    end
+
+    def apply_next_badges
+      attributes = {:hasEarned => false}
+      next_badges.each do |badge|
+        Badge.where(badge.attributes.merge(attributes)).first_or_create
       end
     end
   end

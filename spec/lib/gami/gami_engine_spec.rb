@@ -30,13 +30,17 @@ describe Gami::GamiEngine do
     describe 'badge creation' do
       it 'adds badges when running the engine' do
         subject.run(event)
-        expect(event.user.badges.count).to eql(1)
+        expect(event.user.badges.count).to eql(6)
+        expect(event.user.badges.where({:hasEarned => true}).count).to eql(1)
+        expect(event.user.badges.where({:hasEarned => false}).count).to eql(5)
       end
       it 'runs' do
         Gami::GamiEngine.new(Rails.root + 'spec/fixtures/dsl/*.gami').run(event)
         Gami::GamiEngine.new(Rails.root + 'spec/fixtures/dsl/*.gami').run(event)
         Gami::GamiEngine.new(Rails.root + 'spec/fixtures/dsl/*.gami').run(event)
-        expect(event.user.badges.count).to eql(2)
+        expect(event.user.badges.count).to eql(6)
+        expect(event.user.badges.where({:hasEarned => true}).count).to eql(1)
+        expect(event.user.badges.where({:hasEarned => false}).count).to eql(5)
       end
     end
 

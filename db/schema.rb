@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919133734) do
+ActiveRecord::Schema.define(version: 20141128122107) do
 
   create_table "aliases", force: true do |t|
     t.string   "username"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140919133734) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hasEarned",   default: true
   end
 
   add_index "badges", ["user_id"], name: "index_badges_on_user_id", using: :btree
