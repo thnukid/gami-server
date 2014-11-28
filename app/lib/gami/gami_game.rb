@@ -1,11 +1,13 @@
 module Gami
   class GamiGame
-    attr_reader :rules, :results, :description, :event
+    attr_reader :rules, :results, :next_badges, :description, :event, :options
 
-    def initialize(description, event)
+    def initialize(description, event, options = {})
       @description, @event = description, event
+      @options = options 
       @rules ||= []
       @results ||= []
+      @next_badges ||= []
     end
 
     def run(event)
@@ -28,7 +30,11 @@ module Gami
     private
     def validate_rules
       rules.each do |a_rule|
-        results << Gami::GamiBadge.new(event.user,a_rule) if a_rule.applies?(event.user)
+        if a_rule.applies?(event.user)
+          results << Gami::GamiBadge.new(event.user,a_rule)
+        else
+          next_badges << Gami::GamiBadge.new(event.user,a_rule)
+        end
       end
     end
 
