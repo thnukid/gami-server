@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'rails_helper'
-require 'pry'
 
 describe Gami::GamiGame do
   let(:options){{:gteq => 2, :using_property => ['commit']}}
