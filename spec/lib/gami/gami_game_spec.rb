@@ -47,7 +47,6 @@ describe Gami::GamiGame do
 
      it 'has inactive badges' do
        subject.options[:apply_next] = false
-       binding.pry
         expect(subject.next_badges.size).to eq(1) 
         expect(Badge.where({hasEarned: false}).count).to eq(1)
       end 
