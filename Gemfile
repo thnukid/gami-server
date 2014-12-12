@@ -49,6 +49,8 @@ group :development, :test do
   gem 'sqlite3'
   gem "spring-commands-rspec"
   gem 'pry'
+ gem 'railroady'
+ gem "rails-erd"
 end
 
 group :test do
