@@ -77,5 +77,73 @@ are used. When defining an Badge, gami assets will `lowercase` and `remove white
   'gettingstarted' : 'starter_badge.png'
 }
 ```
-### Getting Gamified
-TODO: Setup Guide
+### Getting Gamified: Installation
+
+##Level 0 :: Prerequisite / Technology Stack
+* Ruby 2.1.1 [Rbenv](https://github.com/sstephenson/rbenv)
+* Rails 4.1.4
+* MySQL (Community) Server [download](http://dev.mysql.com/downloads/mysql/)
+* Redis [download](http://redis.io/download)
+** Sidekiq [info](https://github.com/mperham/sidekiq)
+
+##Level 0.1 :: Install
+* `git clone https://github.com/thnukid/gami-server`
+* `bundle`
+##Level 0.2 :: Configuration
+* Rename, and adjust database name for environments, standard: `gamiserver_development`
+  * `mv config/database.yml.example config/database.yml` 
+  * `vim config/database.yml` 
+* Set app secrets and sidekiq credentials for
+  (webinterface)[http://localhost:3000/sidekiq]
+  * `mv config/secrets.yml.example config/secrets.yml` 
+  * `vim config/secrets.yml` 
+* For Deployment with [Capistrano 2.x](http://capistranorb.com/), set  `:domain,:deploy_to`
+  * `vim config/deploy.rb`
+* For Continues Integration (CI) with [TravisCI](https://travis-ci.org/)
+  * `vim .travis.database.yml`
+  * `vim .travis.secrets.yml`
+  * `vim .travis.yml`
+##Level 0.3 :: Get running
+* `bundle exec rake db:setup`
+* `bundle exec rails s` 
+  * Server available @ [`http://0.0.0.0:3000`](http://0.0.0.0:3000)
+  * (Debug &) routes available: 
+    * Events: [`/debug`](http://0.0.0.0:3000)
+    * Users: [`/debug/user`](http://0.0.0.0:3000/debug/user) 
+    * Aliases: [`/debug/alias`](http://0.0.0.0:3000/debug/alias) 
+* `bundle exec sidekiq -c 10 -e production -L log/sidekiq.log -d`
+  * Webinterface: [`/sidekiq`](http://0.0.0.0:3000/sidekiq) 
+  * Stop detached sidekiq, find process id `ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p` and `kill -15 #{sidekiq_process_id}`
+##Level 0.4 :: Create Players and Aliases
+The `user table` is used to lookup a specific user and to identify for Frontend API calls. The
+`alias table` is used to have multiple services.
+* `rails c` or `rails c ENV=production`
+* Add a new player: 
+  * ` irb(main):005:0> User.new
+      irb(main):006:0> u = _
+      irb(main):007:0> u.username = 'player_name'
+      irb(main):008:0> u.email = 'player@company-email.example'
+      irb(main):009:0> u.password_digest = 'pw_for_later_implementation'
+      irb(main):010:0> u.save
+    `
+* Add a alias (eg. github player account)
+  * ` irb(main):020:0> Alias.new
+      irb(main):021:0> a = _
+      irb(main):022:0> a.username = 'github_username'
+      irb(main):023:0> a.email = 'github_email_login@company.example'
+      irb(main):027:0> a.user_id = u.id
+      irb(main):028:0> a.save
+    `
+##Level 0.5 :: Example: Gamify Github
+The current implementation is based on the concept, to receive events (commit/watch)
+from Github.com by using
+[Webhooks](https://developer.github.com/webhooks/) and to gamify the property 'commit count' of a
+repository.
+* Deploy the (gami-githubwatcher)[https://github.com/thnukid/gami-githubwatcher]
+  * Add (webhook)[/settings/hooks/new] and set:
+    * `Payload URL`, to your publicly accessible server, eg `http://githubwatcher.example.com/github`
+    * `Content Type`, to `application/json`
+    * `Which events would you like to trigger this webhook?` to `Send me everything`
+  * To verify: Start the `gami-githubwatcher` and make an commit to the
+    repository (or star the repository - if you send all events), you should see a new entry in your webhook in green. 
+
