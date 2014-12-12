@@ -85,7 +85,7 @@ are used. When defining an Badge, gami assets will `lowercase` and `remove white
 * Rails 4.1.4
 * MySQL (Community) Server [download](http://dev.mysql.com/downloads/mysql/)
 * Redis [download](http://redis.io/download)
-** Sidekiq [info](https://github.com/mperham/sidekiq)
+* Sidekiq [info](https://github.com/mperham/sidekiq)
 
 ##Level 0.1 :: Install
 * `git clone https://github.com/thnukid/gami-server`
@@ -127,7 +127,7 @@ The `user table` is used to lookup a specific user and to identify for Frontend 
       irb(main):008:0> u.email = 'player@company-email.example'
       irb(main):009:0> u.password_digest = 'pw_for_later_implementation'
       irb(main):010:0> u.save
-    `
+    ```
 * Add a alias (eg. github player account)
   * ```ruby
       irb(main):020:0> Alias.new
@@ -136,7 +136,7 @@ The `user table` is used to lookup a specific user and to identify for Frontend 
       irb(main):023:0> a.email = 'github_email_login@company.example'
       irb(main):027:0> a.user_id = u.id
       irb(main):028:0> a.save
-    `
+    ```
 ##Level 0.5 :: Example: Gamify Github
 The current implementation is based on the concept, to receive events (commit/watch)
 from Github.com by using
@@ -160,20 +160,20 @@ repository.
             { "game"  : {"commits_count": 1, "properties": 1},
               "raw"   : {%raw_payload%}
         ```
-    * gami-server 
-      * Game DSL are defined in 
-        [app/lib/gami/games/](https://github.com/thnukid/gami-server/tree/master/app/lib/gami/games) eg. 
-        [git_watch.gami](https://github.com/thnukid/gami-server/blob/master/app/lib/gami/games/git_push.gami), 
+  * gami-server 
+    * Game DSL are defined in 
+      [app/lib/gami/games/](https://github.com/thnukid/gami-server/tree/master/app/lib/gami/games) eg. 
+      [git_watch.gami](https://github.com/thnukid/gami-server/blob/master/app/lib/gami/games/git_push.gami), 
         [more about Gami DSL](#basic-example)
-      * Fact aggregation:
-        * When a game is run, it aggregates_properties based on the JSON 'game' array (see gami-githubwatcher - Required Data)
-        * The aggregated properties are currently only integers and get
+     * Fact aggregation:
+       * When a game is run, it aggregates_properties based on the JSON 'game' array (see gami-githubwatcher - Required Data)
+       * The aggregated properties are currently only integers and get
           increased by the count received ( see (Rails Fact Model)[https://github.com/thnukid/gami-server/blob/master/app/models/fact.rb]).
           Note: When a fact already exist, then current count gets added to the existing property.
       * Event creation:
         Based on the `Alias Email` used for the service, it will lookup and returns 
         `200 OK` or `422 Unprocessable Entity`, if not found (see (Rails Event Model)[https://github.com/thnukid/gami-server/blob/master/app/models/event.rb]
-      * Badge Assets (images,css)
-        * {'badge_name' : 'media.jpg|css-code'} [example](https://github.com/thnukid/gami-server/blob/master/app/lib/gami/assets/fortawesome-badges.json)
-          Note: The `badge_name` has to be lowercase and has whitespace removed, eg ( In DSL: 'Super Awesome Badge' => In Badge_Assets: 'superawesomebadge')
+     * Badge Assets (images,css)
+       * {'badge_name' : 'media.jpg|css-code'} [example](https://github.com/thnukid/gami-server/blob/master/app/lib/gami/assets/fortawesome-badges.json)
+         Note: The `badge_name` has to be lowercase and has whitespace removed, eg ( In DSL: 'Super Awesome Badge' => In Badge_Assets: 'superawesomebadge')
 
