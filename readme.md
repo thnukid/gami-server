@@ -5,12 +5,13 @@ _____/\\\\\\\\\\\\_____/\\\\\\\\\_____/\\\\____________/\\\\__/\\\\\\\\\\\_
   __/\\\______________/\\\/////////\\\_\/\\\//\\\____/\\\//\\\_____\/\\\_____      
    _\/\\\____/\\\\\\\_\/\\\_______\/\\\_\/\\\\///\\\/\\\/_\/\\\_____\/\\\_____     
     _\/\\\___\/////\\\_\/\\\\\\\\\\\\\\\_\/\\\__\///\\\/___\/\\\_____\/\\\_____    
-     _\/\\\_______\/\\\_\/\\\/////////\\\_\/\\\____\///_____\/\\\_____\/\\\_____   
-      _\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\_____________\/\\\_____\/\\\_____  
-       _\//\\\\\\\\\\\\/__\/\\\_______\/\\\_\/\\\_____________\/\\\__/\\\\\\\\\\\_ 
-        __\////////////____\///________\///__\///______________\///__\///////////__
+                  A Generic Gamification Toolbelt in Ruby (on Rails)
+       _\/\\\_______\/\\\_\/\\\/////////\\\_\/\\\____\///_____\/\\\_____\/\\\_____   
+        _\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\_____________\/\\\_____\/\\\_____  
+         _\//\\\\\\\\\\\\/__\/\\\_______\/\\\_\/\\\_____________\/\\\__/\\\\\\\\\\\_ 
+          __\////////////____\///________\///__\///______________\///__\///////////__
+                     Bachelor Graduation Project // Eric Bartholemy
 ```
-A reusable generic gamification toolbelt in ruby
 -----
 [![Build Status](https://travis-ci.org/thnukid/gami-server.svg)](https://travis-ci.org/thnukid/gami-server)
 [![Code Climate](https://codeclimate.com/github/thnukid/gami-server/badges/gpa.svg)](https://codeclimate.com/github/thnukid/gami-server)
@@ -108,7 +109,7 @@ are used. When defining an Badge, gami assets will `lowercase` and `remove white
 * `bundle exec rails s` 
   * Server available @ [`http://0.0.0.0:3000`](http://0.0.0.0:3000)
   * (Debug &) routes available: 
-    * Events: [`/debug`](http://0.0.0.0:3000)
+    * Events: [`/debug`](http://0.0.0.0:3000/debug)
     * Users: [`/debug/user`](http://0.0.0.0:3000/debug/user) 
     * Aliases: [`/debug/alias`](http://0.0.0.0:3000/debug/alias) 
 * `bundle exec sidekiq -c 10 -e production -L log/sidekiq.log -d`
@@ -119,7 +120,8 @@ The `user table` is used to lookup a specific user and to identify for Frontend 
 `alias table` is used to have multiple services.
 * `rails c` or `rails c ENV=production`
 * Add a new player: 
-  * ` irb(main):005:0> User.new
+  * ```ruby
+      irb(main):005:0> User.new
       irb(main):006:0> u = _
       irb(main):007:0> u.username = 'player_name'
       irb(main):008:0> u.email = 'player@company-email.example'
@@ -127,7 +129,8 @@ The `user table` is used to lookup a specific user and to identify for Frontend 
       irb(main):010:0> u.save
     `
 * Add a alias (eg. github player account)
-  * ` irb(main):020:0> Alias.new
+  * ```ruby
+      irb(main):020:0> Alias.new
       irb(main):021:0> a = _
       irb(main):022:0> a.username = 'github_username'
       irb(main):023:0> a.email = 'github_email_login@company.example'
@@ -139,11 +142,38 @@ The current implementation is based on the concept, to receive events (commit/wa
 from Github.com by using
 [Webhooks](https://developer.github.com/webhooks/) and to gamify the property 'commit count' of a
 repository.
-* Deploy the (gami-githubwatcher)[https://github.com/thnukid/gami-githubwatcher]
-  * Add (webhook)[/settings/hooks/new] and set:
+* Deploy the [gami-githubwatcher](https://github.com/thnukid/gami-githubwatcher)
+  * Add [webhook](/settings/hooks/new) and set:
     * `Payload URL`, to your publicly accessible server, eg `http://githubwatcher.example.com/github`
     * `Content Type`, to `application/json`
     * `Which events would you like to trigger this webhook?` to `Send me everything`
   * To verify: Start the `gami-githubwatcher` and make an commit to the
     repository (or star the repository - if you send all events), you should see a new entry in your webhook in green. 
+* API: Receiving Events (gami-githubwatcher --> gami-server)
+  * gami-githubwatcher
+    * Required Data:
+      * Alias Email (email address used for login to github.com)
+      * Gami Event (this example: 'git:commit', 'git:watch')
+      * JSON Data Array (Note: You can currently only use properties in the Game DSL
+        that are available under the "game" property):
+        ```javascript
+            { "game"  : {"commits_count": 1, "properties": 1},
+              "raw"   : {%raw_payload%}
+        ```
+    * gami-server 
+      * Game DSL are defined in 
+        [app/lib/gami/games/](https://github.com/thnukid/gami-server/tree/master/app/lib/gami/games) eg. 
+        [git_watch.gami](https://github.com/thnukid/gami-server/blob/master/app/lib/gami/games/git_push.gami), 
+        [more about Gami DSL](#basic-example)
+      * Fact aggregation:
+        * When a game is run, it aggregates_properties based on the JSON 'game' array (see gami-githubwatcher - Required Data)
+        * The aggregated properties are currently only integers and get
+          increased by the count received ( see (Rails Fact Model)[https://github.com/thnukid/gami-server/blob/master/app/models/fact.rb]).
+          Note: When a fact already exist, then current count gets added to the existing property.
+      * Event creation:
+        Based on the `Alias Email` used for the service, it will lookup and returns 
+        `200 OK` or `422 Unprocessable Entity`, if not found (see (Rails Event Model)[https://github.com/thnukid/gami-server/blob/master/app/models/event.rb]
+      * Badge Assets (images,css)
+        * {'badge_name' : 'media.jpg|css-code'} [example](https://github.com/thnukid/gami-server/blob/master/app/lib/gami/assets/fortawesome-badges.json)
+          Note: The `badge_name` has to be lowercase and has whitespace removed, eg ( In DSL: 'Super Awesome Badge' => In Badge_Assets: 'superawesomebadge')
 
