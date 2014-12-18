@@ -8,7 +8,8 @@ module Gami
       {:name => @rule.badge,
        :description => @rule.description,
        :picture => Gami::GamiAssets.new.find_badge(@rule.badge) ,
-       :user => @user
+       :user => @user,
+       :hasEarned => true
       }
     end
   end
