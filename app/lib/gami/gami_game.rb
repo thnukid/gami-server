@@ -16,7 +16,7 @@ module Gami
       @event = event #event was an string, but from this point is the event model itself
       validate_rules
       apply_earned_badges
-      apply_next_badges #if options.has_key?(:apply_next) && options[:apply_next] == true
+      #apply_next_badges #if options.has_key?(:apply_next) && options[:apply_next] == true
     end
 
     def add_rule(description,badge, property, conditions, &block)
@@ -35,8 +35,8 @@ module Gami
       rules.each do |a_rule|
         if a_rule.applies?(event.user)
           results << Gami::GamiBadge.new(event.user,a_rule)
-        else
-          next_badges << Gami::GamiBadge.new(event.user,a_rule)
+        #else
+          #next_badges << Gami::GamiBadge.new(event.user,a_rule)
         end
       end
     end
