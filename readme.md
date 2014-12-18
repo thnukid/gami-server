@@ -176,4 +176,4 @@ repository.
      * Badge Assets (images,css)
        * {'badge_name' : 'media.jpg|css-code'} [example](https://github.com/thnukid/gami-server/blob/master/app/lib/gami/assets/fortawesome-badges.json)
          Note: The `badge_name` has to be lowercase and has whitespace removed, eg ( In DSL: 'Super Awesome Badge' => In Badge_Assets: 'superawesomebadge')
-
+sw:
